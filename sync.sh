@@ -27,6 +27,7 @@ FILES=(
     # Files in the lunix homedir
     "${HOME}/.zshrc"
     "${HOME}/.config/nvim"
+    "${HOME}/.config/git/ignore" # Global .gitignore
 )
 
 # Perform the operation based on the argument
