@@ -11,13 +11,22 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 USERDIR="/mnt/c/Users/$USER"
 
+# WSL-specific stuff
+if [ "${WSLENV}" != "" ]; then
+    WSLFILES=(
+        "${USERDIR}/.wezterm.lua"
+    )
+else
+    WSLFILES=()
+fi
+
 # List of absolute file paths to be managed
 FILES=(
-    # Files in windows-land
-    "${USERDIR}/.wezterm.lua"
+    ${WSLFILES[@]}
 
     # Files in the lunix homedir
     "${HOME}/.zshrc"
+    "${HOME}/.config/nvim"
 )
 
 # Perform the operation based on the argument
@@ -27,6 +36,9 @@ case $1 in
             if [ -f "$FILE" ]; then
                 cp "$FILE" "$SCRIPT_DIR"
                 echo "Stored: $FILE"
+	    elif [ -d "$FILE" ]; then
+                cp -rvp "$FILE" "$SCRIPT_DIR"
+                echo "Stored dir: $FILE"
             else
                 echo "Warning: $FILE does not exist"
             fi
@@ -38,6 +50,9 @@ case $1 in
             if [ -f "$SCRIPT_DIR/$BASENAME" ]; then
                 cp "$SCRIPT_DIR/$BASENAME" "$FILE"
                 echo "Restored: $FILE"
+            elif [ -d "$SCRIPT_DIR/$BASENAME" ]; then
+                cp -rvp "$SCRIPT_DIR/$BASENAME" "$FILE"
+                echo "Restored dir: $FILE"
             else
                 echo "Warning: $SCRIPT_DIR/$BASENAME does not exist"
             fi

@@ -13,8 +13,14 @@ else
 	echo $SSH_AUTH_SOCK >| $authpath
 fi
 
+alias vim=nvim
+alias nv=nvim
+
 export EDITOR=nvim
 
-export PATH=~/bin:~/zig/zig-linux-x86_64-0.13.0-dev.75+5c9eb4081:$PATH
+export PICO_SDK_PATH=~/code/pico-sdk
+
+export PATH=~/bin:$PATH
+export PATH=~/zig/zig-linux-x86_64-0.13.0-dev.75+5c9eb4081:$PATH
 export PATH=~/code/zls/zig-out/bin:$PATH
 
