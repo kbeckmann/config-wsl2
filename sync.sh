@@ -15,6 +15,7 @@ USERDIR="/mnt/c/Users/$USER"
 if [ "${WSLENV}" != "" ]; then
     WSLFILES=(
         "${USERDIR}/.wezterm.lua"
+        "${USERDIR}/.glzr"
     )
 else
     WSLFILES=()
