@@ -11,6 +11,8 @@ return {
   enable_tab_bar = false,
   canonicalize_pasted_newlines = "LineFeed",
 
+  default_prog = {"wsl.exe"},
+
   set_environment_variables = {
     COLORTERM="truecolor",
   },
