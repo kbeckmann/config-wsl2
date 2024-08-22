@@ -106,6 +106,9 @@ window_rules:
       # Ignore WSL spawned windows
       - window_process: { equals: 'msrdc' }
 
+      # Ignore NVIDIA Broadcast
+      - window_process: { equals: 'NVIDIA Broadcast UI' }
+
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
   - name: 'resize'
