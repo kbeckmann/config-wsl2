@@ -35,7 +35,8 @@ opt.signcolumn = "yes"
 
 opt.backspace = "indent,eol,start" -- Default
 
-opt.clipboard:append("unnamedplus") -- Integrate with OS clipboard
+-- This gets REALLY annoying
+-- opt.clipboard:append("unnamedplus") -- Integrate with OS clipboard
 
 opt.splitright = true
 opt.splitbelow = true

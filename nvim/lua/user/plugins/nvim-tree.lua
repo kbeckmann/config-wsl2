@@ -10,30 +10,35 @@ return {
     vim.g.loaded_netrwPlugin = 1
 
     local function my_on_attach(bufnr)
-      local api = require('nvim-tree.api')
-
       local function opts(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
 
-      -- OR use all default mappings
+      local function open_tab_no_switch()
+        local tabpage = vim.api.nvim_get_current_tabpage()
+        api.node.open.tab()
+        vim.api.nvim_set_current_tabpage(tabpage)
+      end
+
+      -- use all default mappings
       api.config.mappings.default_on_attach(bufnr)
-      -- override a default
+      -- override defaults
       vim.keymap.set('n', '<leader><CR>', api.node.open.tab, opts('Open in tab'))
+      vim.keymap.set('n', '<leader>t', open_tab_no_switch, opts('Open in tab without switching to it'))
     end
 
     nvimtree.setup({
       on_attach = my_on_attach,
       view = {
         width = 35,
---        relativenumber = true,
+        --        relativenumber = true,
       },
       -- change folder arrow icons
       renderer = {
         indent_markers = {
           enable = true,
         },
-     },
+      },
       -- disable window_picker for
       -- explorer to work well with
       -- window splits
@@ -54,6 +59,5 @@ return {
     keymap.set("n", "<leader>ee", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
     keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
     keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
-
   end
 }

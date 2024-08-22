@@ -30,8 +30,10 @@ return {
         "clangd",
         "html",
         "lua_ls",
-        "pyright",
+        "pylsp",
         "rust_analyzer",
+        "tsserver",
+        "verible",
         "zls",
       },
     })
