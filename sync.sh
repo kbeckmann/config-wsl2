@@ -29,6 +29,7 @@ FILES=(
     "${HOME}/.zshrc"
     "${HOME}/.config/nvim"
     "${HOME}/.config/git/ignore" # Global .gitignore
+    "${HOME}/.oh-my-zsh/themes/kbeckmann.zsh-theme"
 )
 
 # Perform the operation based on the argument
